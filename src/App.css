@@ -1,0 +1,90 @@
+.App {
+  text-align: center;
+}
+
+
+.card {
+  max-width: 512px;
+  margin: 0 auto;
+  /* display: inline; */
+ 
+}
+
+.card-text {
+  display: -webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+ 
+}
+
+.go-back {
+text-decoration: none;
+outline: none;
+  margin-left: -600px;
+}
+
+.arrow{
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+
+
+.search{
+
+display: flex;
+justify-content: space-between;
+margin: 20px;
+margin-top: 20px;
+padding-top: 30px;
+}
+
+.home{
+  
+  margin-right: 50px;
+}
+
+.details{
+  margin: auto;
+  max-width: 75%;
+}
+
+.card-link{
+  text-decoration: none;
+}
+
+
+.loading-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.loading-skeleton-item {
+  width: 80%;
+  height: 20px;
+  background-color: #887d7d; 
+  border-radius: 4px;
+  margin-left: 50px;
+
+}
+
+.loading-skeleton-title {
+  width: 50%; 
+  margin-left: 50px;
+
+}
+
+.loading-skeleton-image {
+  margin-left: 50px;
+  width: 70%;
+  height: 300px; 
+}
+
+.loading-skeleton-text {
+  width: 60%; 
+  margin-left: 50px;
+
+}
