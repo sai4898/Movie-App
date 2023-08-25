@@ -9,16 +9,23 @@ import { RootState } from '../app/store';
 import { useAppDispatch } from '../app/hooks';
 import { Card } from 'react-bootstrap';
 import LoadingSkeleton from './LoadingSkeleton';
+import axios from 'axios';
 
-
-
+interface CastMember {
+  id: number;
+  name: string;
+  profile_path: string | null;
+}
 function MovieDetail() {
   const { id } = useParams<{ id: any; }>(); 
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
   const history = useNavigate();
-  const movie = useSelector((state: RootState) => state.movies.popular.find((m) => m.id === +id));
+  const [cast, setCast] = useState<CastMember[]>([]);
+  const movie = useSelector((state: RootState) => state.movies.popular.find((m: { id: number; }) => m.id === +id));
 // console.log(movie,'2')
+const TMDB_API_KEY =  '2c8b8adce87c3a752033b91ed38b38a9';
+
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,6 +35,22 @@ function MovieDetail() {
   return () => clearTimeout(timer);
   }, [dispatch, id]);
 
+
+  useEffect(() => {
+    if (movie) {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${TMDB_API_KEY}`
+        )
+        .then((response) => {
+          setCast(response.data.cast);
+        })
+        .catch((error) => {
+          console.error('Error fetching cast:', error);
+        });
+    }
+  }, [id, movie]);
+console.log(cast,'00')
   if (isLoading) {
     return <LoadingSkeleton />
   }
@@ -57,8 +80,25 @@ function MovieDetail() {
       <ListGroup.Item>Rating: {movie.vote_average}</ListGroup.Item>
       <ListGroup.Item>Vote Count: {movie.vote_count}</ListGroup.Item>
     </ListGroup>
- 
-  </Card>
+        </Card>
+   
+  <h3>Cast</h3>
+<div className="d-flex flex-wrap">
+  {cast.map((member) => (
+    <div key={member.id} className="cast-member card m-2 p-2">
+      {member.profile_path && (
+        <img
+          src={`https://image.tmdb.org/t/p/w185${member.profile_path}`}
+          alt={member.name}
+          className="card-img-top"
+        />
+      )}
+      <div className="card-body">
+        <p className="card-text">{member.name}</p>
+      </div>
+    </div>
+  ))}
+</div>
 </>
   );
 }

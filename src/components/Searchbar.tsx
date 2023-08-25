@@ -41,8 +41,9 @@ function Searchbar() {
 
   return (
     <div>
-      <div className='search'>
+      <div className='search-container'>
       <input
+      title='Search'
       className='input'
       type="text"
       placeholder="Search movies..."
@@ -50,9 +51,8 @@ function Searchbar() {
       onChange={(e) => setSearchQuery(e.target.value)} />
       <div>
 
-      <NavLink to ='/'>
-
-        <AiTwotoneHome size={25} className='home' />
+      <NavLink to ='/' className='home-link'>
+        <AiTwotoneHome size={25} className='home-icon' title='Home' />
       </NavLink>
       </div>
       </div>

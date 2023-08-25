@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import MovieCard from './MovieCard';
 import { RootState } from '../app/store';
 import { fetchPopularMovies } from '../Redux/movieSlice';
@@ -25,10 +24,13 @@ function MovieList() {
     return <LoadingSkeleton />
   }
 
+  
+
   return (
+    <div>
     <div className="row">
       {popularMovies.map((movie) => (
-        <div className="col-md-4 mb-4" key={movie.id}>
+        <div className="col-md-4 mb-4 d-inline" key={movie.id}>
           <MovieCard
             id={movie.id}
             title={movie.title}
@@ -36,6 +38,7 @@ function MovieList() {
             overview={movie.overview} />
         </div>
       ))}
+      </div>
     </div>
   );
 }
