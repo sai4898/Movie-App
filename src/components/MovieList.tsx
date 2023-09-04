@@ -39,6 +39,22 @@ function MovieList() {
         </div>
       ))}
       </div>
+
+      <h3>Comedy Movies</h3>
+<div className="row">
+  {popularMovies
+    .filter((movie) => movie.genres && movie.genres.includes('Comedy'))
+    .map((movie) => (
+      <div className="col-md-4 mb-4" key={movie.id}>
+        <MovieCard
+          id={movie.id}
+          title={movie.title}
+          imageUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          overview={movie.overview}
+        />
+      </div>
+    ))}
+</div>
     </div>
   );
 }
