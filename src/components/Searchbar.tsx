@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
 import MovieCard from './MovieCard';
 import { fetchPopularMovies } from '../Redux/movieSlice';
@@ -8,7 +8,7 @@ import { AiTwotoneHome } from 'react-icons/ai';
 
 import { RootState } from '../app/store';
 import { useAppDispatch } from '../app/hooks';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 interface Movie {
   id: number;
@@ -19,7 +19,7 @@ interface Movie {
 
 function Searchbar() {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const popularMovies = useSelector((state: RootState) => state.movies.popular);
 
   const [searchQuery, setSearchQuery] = useState<string>('');

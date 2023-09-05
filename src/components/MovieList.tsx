@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import MovieCard from './MovieCard';
 import { RootState } from '../app/store';
 import { fetchPopularMovies } from '../Redux/movieSlice';
